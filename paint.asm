@@ -8,22 +8,22 @@ org 0x7C00
 	mov edi, 0xB8000;
         xor ah,ah
       
-check:
+checkAgain:
 xor edx,edx	
 in al,0x64
 shr al,1
-jnc check 	
+jnc checkAgain 	
 
 in al,0x60
 cmp al,0x39;space
 jne A
 mov ah,1
-jmp check
+jmp checkAgain
 A:
 cmp al,0xB9;space break
 jne B
 mov ah,0
-jmp check
+jmp checkAgain
 B:
 cmp al,0x4B ; left
 jne next1
@@ -53,7 +53,7 @@ cmp ah,1
 jne T
 mov [edi],cl
 T:
-jmp check
+jmp checkAgain
 times (510 - ($ - $$)) db 0
 db 0x55, 0xAA
 times (0x400000 - 512) db 0
