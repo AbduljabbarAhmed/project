@@ -9,6 +9,7 @@ org 0x7C00
         xor ah,ah
       
 checkAgain:
+add ecx,7
 xor edx,edx	
 in al,0x64
 shr al,1
